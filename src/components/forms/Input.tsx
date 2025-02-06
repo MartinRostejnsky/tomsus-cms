@@ -31,7 +31,7 @@ const Input: React.FC<InputProps> = (props) => {
                     ref={props.ref}
                     type={props.type}
                     placeholder={props.placeholder}
-                    className="w-full p-2 rounded-lg focus:border-[var(--primary2)] hover:border-[var(--primary)] focus:outline-none text-[var(--foreground4)] border border-[var(--background3)]"
+                    className="w-full p-2 rounded-lg focus:border-[var(--primary2)] bg-[var(--background)] hover:border-[var(--primary)] focus:outline-none text-[var(--foreground4)] border border-[var(--background3)]"
                 />
         </div>
     );
