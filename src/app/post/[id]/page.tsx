@@ -1,5 +1,4 @@
 import authOptions from "@/app/utils/auth.options";
-import Button, { ButtonColor } from "@/components/common/Button";
 import PostEditMenu from "@/components/posts/PostEditMenu";
 import PostPreview from "@/components/posts/PostPreview";
 import { prisma } from "@/lib/prisma";
@@ -21,10 +20,9 @@ export default async function Home({params} : {params: {id: string}}) {
 
     const isAuthor = Number(session?.user.id) === post?.authorId;
 
-
     return (<>
         {isAuthor && (
-            <PostEditMenu />
+            <PostEditMenu post_id={Number(id)} />
         )}
         {post && <PostPreview post={{
             id: post?.id.toString(),
