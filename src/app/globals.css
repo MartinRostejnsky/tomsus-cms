@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --background: #ffffff;
+  --background2: #F3F5F7;
+  --background3: #ECEEF2;
+  --foreground5: #232323;
+  --foreground4: #363636;
+  --foreground3: #5C6064;
+  --foreground2: #91999E;
+  --foreground: #0E0E0F;
+  --primary: #88C02E;
+  --primary2: #5AA82F;
+  --error: #AE1C1B;
+  --error2: #E74C4C;
+  --info: #0079E0;
+  --info2: #0D9DFF;
+  --success: #DEF2BD;
+  --success2: #5AA82F;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Urbanist", sans-serif;
+}
