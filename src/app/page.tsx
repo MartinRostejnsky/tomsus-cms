@@ -14,6 +14,7 @@ export default async function Home() {
         </p>
         {posts.map((post) => (
             <PostPreview key={post.id} post={{
+                id: post.id.toString(),
                 title: post.title,
                 content: post.content,
                 createdAt: post.published,

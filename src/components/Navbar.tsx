@@ -1,4 +1,4 @@
-import { Home, PlusCircle } from "lucide-react";
+import { AppWindowMac, Home, PlusCircle } from "lucide-react";
 import Link from "next/link";
 import CurrentUser from "./auth/CurrentUser";
 import LogoutButton from "./auth/LogoutButton";
@@ -14,10 +14,16 @@ const routes = [
     },
     {
         name: "Post",
-        route: "/new",
+        route: "/post/new",
         icon: <PlusCircle size={24} />,
         authorized: true
-    }
+    },
+    {
+        name: "Dashboard",
+        route: "/dashboard",
+        icon: <AppWindowMac size={24} />,
+        authorized: true
+    },
 ]
 
 const Navbar = async () => {
