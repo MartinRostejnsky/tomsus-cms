@@ -7,7 +7,12 @@ const CurrentUser = async () => {
 
     return (
         <div className="flex items-center gap-2">
-        {session ? (<></>) : (
+        {session ? (<>
+        <div className="flex items-center gap-2">
+            <span className="font-bold">{session.user?.name}</span>
+            <span className="text-sm">({session.user?.email})</span>
+        </div>
+        </>) : (
 
             <div className="flex items-center gap-2">
                 <span>Not signed in</span>
