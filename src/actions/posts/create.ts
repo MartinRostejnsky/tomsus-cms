@@ -26,7 +26,7 @@ const create = async (params: PostCreateParams) => {
             content: post.content,
             author: {
                 connect: {
-                    id: session.user.id
+                    id: Number(session.user.id)
                 }
             },
             published: new Date()

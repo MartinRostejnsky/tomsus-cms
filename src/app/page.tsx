@@ -1,9 +1,25 @@
-export default function Home() {
-    return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4 mt-8">
-            <p className="text-4xl font-bold ">  
-                Articles for you
-            </p>
-        </div>
+import PostPreview from "@/components/posts/PostPreview";
+import { prisma } from "@/lib/prisma";
+
+export default async function Home() {
+    const posts = await prisma.post.findMany({
+        include: {
+            author: true
+        }
+    });
+    
+    return (<>
+        <p className="text-4xl font-bold ">  
+            Articles for you
+        </p>
+        {posts.map((post) => (
+            <PostPreview key={post.id} post={{
+                title: post.title,
+                content: post.content,
+                createdAt: post.published,
+                author: post.author.name
+            }} />
+        ))}
+        </>
     );
 }
