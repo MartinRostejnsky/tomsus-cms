@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { Home, PlusCircle } from "lucide-react";
 import Link from "next/link";
 import CurrentUser from "./auth/CurrentUser";
 import LogoutButton from "./auth/LogoutButton";
@@ -9,7 +9,14 @@ const routes = [
     {
         name: "Home",
         route: "/",
-        icon: <Home size={24} />
+        icon: <Home size={24} />,
+        authorized: false
+    },
+    {
+        name: "Post",
+        route: "/new",
+        icon: <PlusCircle size={24} />,
+        authorized: true
     }
 ]
 
@@ -20,12 +27,14 @@ const Navbar = async () => {
             <nav className="h-full">
                 <menu className="flex gap-4 h-full py-1">
                     {routes.map((route,i) => (
-                        <Link href={route.route} key={i}>                  
-                            <li className="px-4 py-4 flex items-center rounded-md cursor-pointer hover:bg-[var(--background3)] h-full">
-                                {route.icon}
-                                <span className="ml-2 font-bold">{route.name}</span>
-                            </li>
-                        </Link>
+                        <>
+                        {(!route.authorized || session) && <Link href={route.route} key={i}>                  
+                                <li className="px-4 py-4 flex items-center rounded-md cursor-pointer hover:bg-[var(--background3)] h-full">
+                                    {route.icon}
+                                    <span className="ml-2 font-bold">{route.name}</span>
+                                </li>
+                            </Link>}
+                        </>
 
                     ))}
                 </menu>
