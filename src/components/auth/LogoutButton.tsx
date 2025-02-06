@@ -6,7 +6,7 @@ import { LogOut } from "lucide-react";
 
 const LogoutButton = () => {
     return (
-        <Button style="font-bold gap-2" onClick={() => signOut()}>
+        <Button style="font-bold gap-2 p-4" onClick={() => signOut()}>
         <LogOut size={24} />
         Sign Out
         </Button>
