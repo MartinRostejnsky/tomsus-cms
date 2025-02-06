@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { compare } from "bcryptjs";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -11,7 +12,10 @@ const authOptions : NextAuthOptions = {
           password: { label: "Password", type: "password" },
         },
         async authorize(credentials) {
-          // 1) Najdeme uživatele v DB podle emailu
+            if (!credentials) {
+                throw new Error("Neplatné údaje");
+            }
+
           const user = await prisma.user.findUnique({
             where: { email: credentials?.email },
           });
@@ -19,13 +23,9 @@ const authOptions : NextAuthOptions = {
             throw new Error("Uživatel neexistuje");
           }
   
-          // 2) Ověříme heslo (pokud by bylo uloženo v DB hashované)
-          // Příklad: if (!(await compare(credentials.password, user.hashedPassword))) { ... }
-  
-          // DEMO: Budeme předpokládat, že heslo je "password"
-          if (credentials?.password !== "password") {
+        if (!(await compare(credentials.password, user.hashedPassword))) {
             throw new Error("Nesprávné heslo");
-          }
+        }
   
           // 3) Vrátíme objekt, který se vloží do session
           return {
