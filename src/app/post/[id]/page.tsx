@@ -4,7 +4,7 @@ import PostPreview from "@/components/posts/PostPreview";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 
-export default async function Home({params} : {params: {id: string}}) {
+export default async function Home({params} : {params: Promise<{id: string}>}) {
     const { id } = await params;
     const session = await getServerSession(authOptions);
 
