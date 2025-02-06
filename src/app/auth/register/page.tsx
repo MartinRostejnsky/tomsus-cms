@@ -1,8 +1,11 @@
+import RegistrationForm from "@/app/components/auth/RegistrationForm";
+
 const RegisterPage = () => {
     return (
-        <h1 className="text-3xl font-bold">
-            Hello world!
-        </h1>
+        <>
+        <p className="font-bold text-2xl">Register</p>
+        <RegistrationForm />
+        </>
     );
 };
 
