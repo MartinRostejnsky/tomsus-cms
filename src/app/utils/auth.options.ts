@@ -29,19 +29,36 @@ const authOptions : NextAuthOptions = {
   
           // 3) Vrátíme objekt, který se vloží do session
           return {
-            id: user.id.toString(),
+            id: user.id,
             name: user.name,
             email: user.email,
           };
         },
       }),
     ],
+    
     secret: process.env.NEXTAUTH_SECRET,
     session: {
       strategy: "jwt",
     },
     pages: {
       signIn: "/auth/login",
+    },
+    callbacks: {
+      async jwt({ token, user }) {
+        console.log("JWT Callback:", { token, user });
+        if (user) {
+          token.id = user.id; // ✅ Ensure id is stored in the token
+        }
+        return token;
+      },
+      async session({ session, token }) {
+        console.log("Session Callback:", { session, token });
+        if (session.user) {
+          session.user.id = token.id as number; // ✅ Ensure id is added to session.user
+        }
+        return session;
+      },
     },
 }
 

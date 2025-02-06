@@ -26,17 +26,19 @@ const Navbar = async () => {
         <div className="bg-[var(--background2)] px-8 flex justify-between items-center">
             <nav className="h-full">
                 <menu className="flex gap-4 h-full py-1">
-                    {routes.map((route,i) => (
-                        <>
-                        {(!route.authorized || session) && <Link href={route.route} key={i}>                  
+                    {routes.filter((route) => {
+                        return !route.authorized || session
+                    }).map((route,i) => {
+
+                        return (
+                            <Link href={route.route} key={i}>                  
                                 <li className="px-4 py-4 flex items-center rounded-md cursor-pointer hover:bg-[var(--background3)] h-full">
                                     {route.icon}
                                     <span className="ml-2 font-bold">{route.name}</span>
                                 </li>
-                            </Link>}
-                        </>
-
-                    ))}
+                            </Link>
+                        )
+                    })}
                 </menu>
                 
             </nav>

@@ -1,3 +1,5 @@
+"use server";
+
 import authOptions from '@/app/utils/auth.options';
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
@@ -18,21 +20,18 @@ const create = async (params: PostCreateParams) => {
 
     const { post } = params;
     
-    prisma.post.create({
+    await prisma.post.create({
         data: {
             title: post.title,
             content: post.content,
             author: {
                 connect: {
-                    id: Number(session.id)
+                    id: session.user.id
                 }
             },
             published: new Date()
-            
         }
-    })
-    
-    
+    })    
 };
 
 export default create;
