@@ -7,7 +7,8 @@ export default async function Home() {
     const session = await getServerSession(authOptions);
     const posts = await prisma.post.findMany({
         include: {
-            author: true
+            author: true,
+            tags: true
         },
         where: {
             authorId: Number(session?.user.id)
@@ -24,7 +25,8 @@ export default async function Home() {
                 title: post.title,
                 content: post.content,
                 createdAt: post.published,
-                author: post.author.name
+                author: post.author.name,
+                tags: post.tags
             }} />
         ))}
         </>

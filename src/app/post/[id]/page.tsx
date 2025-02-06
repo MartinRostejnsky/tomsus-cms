@@ -13,7 +13,8 @@ export default async function Home({params} : {params: {id: string}}) {
             id: Number(id)
         },
         include: {
-            author: true
+            author: true,
+            tags: true
         }
     })
     console.log(session?.user.id, post?.authorId);
@@ -30,6 +31,7 @@ export default async function Home({params} : {params: {id: string}}) {
             content: post.content,
             author: post.author.name,
             createdAt: new Date(),
+            tags: post.tags
         }} />}
         </>
     )

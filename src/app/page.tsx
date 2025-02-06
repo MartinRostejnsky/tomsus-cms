@@ -4,7 +4,8 @@ import { prisma } from "@/lib/prisma";
 export default async function Home() {
     const posts = await prisma.post.findMany({
         include: {
-            author: true
+            author: true,
+            tags: true
         }
     });
     
@@ -18,7 +19,8 @@ export default async function Home() {
                 title: post.title,
                 content: post.content,
                 createdAt: post.published,
-                author: post.author.name
+                author: post.author.name,
+                tags: post.tags
             }} />
         ))}
         </>
